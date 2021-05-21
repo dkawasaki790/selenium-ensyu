@@ -1,6 +1,8 @@
 package exercize;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.ListIterator;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,73 +13,75 @@ public class ex03 {
 	public static void main(String[] args) throws IOException {
 		
 		System.setProperty("webdriver.chrome.driver", "./exe/chromedriver"); 
-		WebDriver driver = new ChromeDriver(); //ChromeDriver‚Ìì¬
+		WebDriver driver = new ChromeDriver(); //ChromeDriverã‚’èµ·å‹•
 		driver.get("https://www.e-procurement.metro.tokyo.jp/");
-			//get()‚Åƒuƒ‰ƒEƒU‹N“® 
+			//get()ã§èµ·å‹•
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		
-        //Œ³‚Ìƒy[ƒW‚Ìƒnƒ“ƒhƒ‹‚ğ‹L‰¯
+        //ä»Šç¾åœ¨ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’è¦šãˆã‚‹
 		String Handle = driver.getWindowHandle();
-		//V‚µ‚­ƒ^ƒu‚ğŠJ‚­ƒŠƒ“ƒN(“üDî•ñƒT[ƒrƒX)‚ğƒNƒŠƒbƒN 
+		//æ–°ã—ãã‚¿ãƒ–ï¼ˆå…¥æœ­æƒ…å ±ã‚·ã‚¹ãƒ†ãƒ ï¼‰ã‚’é–‹ã
 		driver.findElement(By.xpath("//*[@id=\"menu_1\"]/a")).click();
 
-		//Ÿ‚Ìƒ^ƒu‚Ìƒnƒ“ƒhƒ‹‚ğ—pˆÓ‚µAƒ^ƒu‚ªV‚µ‚­ŠJ‚©‚ê‚Ä‚¢‚½‚çnewHandle‚É‘ã“ü‚·‚é
+		//ã‚¿ãƒ–ãŒç•°ãªã£ã¦ã„ãŸã‚‰idã‚’ã‚»ãƒƒãƒˆ
 		String newHandle = null;
 		for (String id : driver.getWindowHandles()) {
 		    if(!id.equals(Handle)){
 		        newHandle = id;
 		    }
 		}
-		//newHandle‚Éƒnƒ“ƒhƒ‹‚ğˆÚ‚·
+		//newHandleã«åˆ‡ã‚Šæ›¿ãˆã‚‹
 		driver.switchTo().window(newHandle);
 		
-		//”­’—\’èî•ñ‚ğƒNƒŠƒbƒN
+		//ã‚¯ãƒªãƒƒã‚¯
 		driver.findElement(By.xpath("//*[@id=\"topMenuBtn03\"]")).click();
 		
-
-		//”N
+		//ï¿½N
 		WebElement requestDateY = driver.findElement(By.name("StartDateYY")); 
 		requestDateY.sendKeys("3");
-		//Œ
+		//ï¿½ï¿½
 		WebElement requestDateM = driver.findElement(By.name("StartDateMM")); 
 		requestDateM.sendKeys("5");
-		//“ú
+		//ï¿½ï¿½
 		WebElement requestDateD = driver.findElement(By.name("StartDateDD")); 
 		requestDateD.sendKeys("21");
 		
-		//”N
+		//ï¿½N
 		WebElement endDateY = driver.findElement(By.name("EndDateYY")); 
 		endDateY.sendKeys("3");
-		//Œ
+		//ï¿½ï¿½
 		WebElement endDateM = driver.findElement(By.name("EndDateMM")); 
 		endDateM.sendKeys("6");
-		//“ú
+		//ï¿½ï¿½
 		WebElement endDateD = driver.findElement(By.name("EndDateDD")); 
 		endDateD.sendKeys("30");
 		
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		
-		//ŒŸõƒ{ƒ^ƒ“‚ğ‰Ÿ‰º‚µAŒŸõÀs
+		//æ¤œç´¢å®Ÿè¡Œ
 		driver.findElement(By.xpath("/html/body/div[3]/div/form/table[2]/tbody/tr[3]/td/table[2]/tbody/tr/td/a")).click();
-
 		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//WebElementã‚’ãƒªã‚¹ãƒˆã§å–å¾—
+		List<WebElement> elements =  
+				driver.findElements(By.xpath("/html/body/div[3]/div/form/table[5]"));
+		System.out.println("Number of elements:" +elements.size());
+		
+		for(ListIterator<WebElement>iterator = elements.listIterator(); iterator.hasNext();){
+
+		    System.out.println(iterator.next().getText()+"	");
 		}
-		driver.quit(); //ƒuƒ‰ƒEƒU‚ğ•Â‚¶‚éB
+		
+		
 		
 	}
 }

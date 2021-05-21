@@ -17,40 +17,40 @@ public class ex02 {
 	public static void main(String[] args) {
 		
 		System.setProperty("webdriver.chrome.driver", "./exe/chromedriver"); 
-		WebDriver driver = new ChromeDriver(); //ChromeDriver‚Ìì¬
+		WebDriver driver = new ChromeDriver(); //ChromeDriverï¿½Ìì¬
 		driver.get("https://rakuplus.jp/");
-			//get()‚Åƒuƒ‰ƒEƒU‹N“® 
+			//get()ï¿½Åƒuï¿½ï¿½ï¿½Eï¿½Uï¿½Nï¿½ï¿½ 
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		//ˆ—‚ğ’â~(“®ìŠm”F‚Ìˆ×) 
-		//ƒuƒ‰ƒEƒU‚Ì—v‘f‚ğw’è ƒƒ\ƒbƒh–¼‚ª‚í‚©‚è‚â‚·‚¢‚Å‚·‚æ‚ËB
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~(ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½Ìˆï¿½) 
+		//ï¿½uï¿½ï¿½ï¿½Eï¿½Uï¿½Ì—vï¿½fï¿½ï¿½ï¿½wï¿½ï¿½ ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½ï¿½ï¿½ï¿½ï¿½í‚©ï¿½ï¿½â‚·ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ËB
 		WebElement userName = driver.findElement(By.id("user_login")); 
-		//ƒ†[ƒU[–¼‚ğ“ü—Í
-		userName.sendKeys("ƒ†[ƒU[–¼");
+		//ï¿½ï¿½ï¿½[ï¿½Uï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		userName.sendKeys("ï¿½ï¿½ï¿½[ï¿½Uï¿½[ï¿½ï¿½");
 		
 		WebElement password = driver.findElement(By.id("user_pass")); 
-		//ƒpƒXƒ[ƒh‚ğ“ü—Í
-		password.sendKeys("ƒpƒXƒ[ƒh");
-		//ƒTƒuƒ~ƒbƒg
+		//ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½
+		password.sendKeys("ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½h");
+		//ï¿½Tï¿½uï¿½~ï¿½bï¿½g
 		userName.submit();
 		
-		// ƒy[ƒWƒ^ƒCƒgƒ‹‚ª•Ï‚í‚é‚Ü‚Å‘Ò‚ÂB10 •b‘Ò‚Á‚Ä‚à•Ï‚í‚ç‚È‚¢ê‡A
-		// org.openqa.selenium.TimeoutExceptionv‚ª”­¶‚·‚éBB
+		// ï¿½yï¿½[ï¿½Wï¿½^ï¿½Cï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Ï‚ï¿½ï¿½Ü‚Å‘Ò‚ÂB10 ï¿½bï¿½Ò‚ï¿½ï¿½Ä‚ï¿½ï¿½Ï‚ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½A
+		// org.openqa.selenium.TimeoutExceptionï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Bï¿½B
 		(new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver d) {
-				return d.getTitle().toLowerCase().startsWith("5’›‰~‚¨‚­‚ê");
+				return d.getTitle().toLowerCase().startsWith("5ï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			}
 		});
 
-		// ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg‚ğæ“¾‚µAƒtƒ@ƒCƒ‹‚ğ‘Ş”ğ‚·‚éB © © © ‚±‚±‚ğ’Ç‰ÁB
+		// ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½bï¿½gï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Aï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½Ş”ï¿½ï¿½ï¿½ï¿½ï¿½B ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‰ï¿½ï¿½B
 		File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		try {
-			Files.copy(file.toPath(),new File("ƒtƒ@ƒCƒ‹ƒpƒX" + file.getName()).toPath());
-		}catch (IOException e1) {
+			Files.copy(file.toPath(),new File("ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½pï¿½X" + file.getName()).toPath());
+		}catch (IOException e1){
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
@@ -61,7 +61,7 @@ public class ex02 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		driver.quit(); //ƒuƒ‰ƒEƒU‚ğ•Â‚¶‚éB
+		driver.quit(); //ï¿½uï¿½ï¿½ï¿½Eï¿½Uï¿½ï¿½Â‚ï¿½ï¿½ï¿½B
 		
 	}
 }
